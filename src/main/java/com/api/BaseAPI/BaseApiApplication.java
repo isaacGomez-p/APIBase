@@ -2,7 +2,13 @@ package com.api.BaseAPI;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 
+@PropertySources({
+		@PropertySource(value = "file:D:\\Trabajo\\APIBase\\AppProperties\\application.properties",
+				ignoreResourceNotFound = true)
+})
 @SpringBootApplication
 public class BaseApiApplication {
 
