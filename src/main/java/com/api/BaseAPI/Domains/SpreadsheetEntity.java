@@ -67,11 +67,11 @@ public class SpreadsheetEntity {
     private String codeNSpreadsheet; //Código de número de planilla
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "PLANTING_MAPS", joinColumns = @JoinColumn(name = "SPREADSHEET_ID"), inverseJoinColumns = @JoinColumn(name = "ID"))
+    @JoinTable(name = "PLANTING_MAPS", joinColumns = @JoinColumn(name = "SPREADSHEET_ID"), inverseJoinColumns = @JoinColumn(name = "PLANTINGMAP_ID"))
     private List<PlantingMapEntity> plantingMaps;
 
     @ManyToOne
-    @JoinColumn(name="nSpreadsheetId")
+    @JoinColumn(name="NSPREADSHEET_ID")
     private NSpreadsheetEntity nSpreadsheet;
 
     public Long getSpreadsheetId() {
@@ -202,13 +202,13 @@ public class SpreadsheetEntity {
         this.codeLand = codeLand;
     }
 
-    public String getCodeNSpreadsheet() {
+    /*public String getCodeNSpreadsheet() {
         return codeNSpreadsheet;
     }
 
     public void setCodeNSpreadsheet(String codeNSpreadsheet) {
         this.codeNSpreadsheet = codeNSpreadsheet;
-    }
+    }*/
 
     public List<PlantingMapEntity> getPlantingMaps() {
         return plantingMaps;

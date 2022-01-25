@@ -20,8 +20,7 @@ public class ProductEntity {
     @Column(name = "CODE", length = 8, nullable = false)
     private String code;
 
-    @OneToOne(targetEntity = PlantingMapEntity.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "id")
+    @OneToOne(mappedBy = "product")
     private PlantingMapEntity plantingMap;
 
     public Long getProduct_id() {

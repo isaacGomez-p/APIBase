@@ -6,7 +6,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 
 @PropertySources({
-		@PropertySource(value = "file:D:\\Trabajo\\APIBase\\AppProperties\\application.properties",
+		@PropertySource(value = "file:C:\\Users\\isaac\\Documents\\Java APIs\\APIBase Config\\application.properties",
 				ignoreResourceNotFound = true)
 })
 @SpringBootApplication

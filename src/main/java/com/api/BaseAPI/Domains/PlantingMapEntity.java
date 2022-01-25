@@ -1,6 +1,7 @@
 package com.api.BaseAPI.Domains;
 
 import javax.persistence.*;
+import java.util.List;
 
 //Plano de siembra
 @Entity
@@ -9,7 +10,7 @@ public class PlantingMapEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "PLANTINGMAP_ID")
     private Long id;
 
     @Column(name = "BATCH", length = 120, nullable = false)
@@ -40,7 +41,11 @@ public class PlantingMapEntity {
     @JoinColumn(name="land_id")
     private LandEntity land; //Finca
 
-    @OneToOne(mappedBy = "plantingMap")
+    @ManyToMany(mappedBy = "plantingMaps")
+    private List<SpreadsheetEntity> spreadsheets;
+
+    @OneToOne(targetEntity = ProductEntity.class, fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false, name = "product_id")
     private ProductEntity product;
 
     public Long getId() {
