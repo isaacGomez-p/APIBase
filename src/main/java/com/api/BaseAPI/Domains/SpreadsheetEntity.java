@@ -3,13 +3,14 @@ package com.api.BaseAPI.Domains;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
 //PLanilla de aplicación
 @Entity
 @Table(name = "Spreadsheet")
-public class SpreadsheetEntity {
+public class SpreadsheetEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,9 +48,9 @@ public class SpreadsheetEntity {
     @Column(name = "MADE_BY", length = 120, nullable = false)
     private String madeBy; //Elaborado por
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Column(name = "APPLICATION_DATE", columnDefinition = "TIMESTAMP WITH TIME ZONE")
-    private LocalDateTime applicationDate; //Fecha de aplicación
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    //@Column(name = "APPLICATION_DATE", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    //private LocalDateTime applicationDate; //Fecha de aplicación
 
     @Column(name = "STATUS", length = 120, nullable = false)
     private String status; //Estado
@@ -66,13 +67,14 @@ public class SpreadsheetEntity {
     @Column(name = "CODE_NSPREADSHEET", length = 120, nullable = false)
     private String codeNSpreadsheet; //Código de número de planilla
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "PLANTING_MAPS", joinColumns = @JoinColumn(name = "SPREADSHEET_ID"), inverseJoinColumns = @JoinColumn(name = "PLANTINGMAP_ID"))
+    //@ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "PLANTING_MAPS", joinColumns = @JoinColumn(name = "FK_SPREADSHEET_ID"), inverseJoinColumns = @JoinColumn(name = "FK_PLANTINGMAP_ID"))
     private List<PlantingMapEntity> plantingMaps;
 
-    @ManyToOne
-    @JoinColumn(name="NSPREADSHEET_ID")
-    private NSpreadsheetEntity nSpreadsheet;
+    //@ManyToOne
+    //@JoinColumn(name="NSPREADSHEET_ID")
+    //private NSpreadsheetEntity nSpreadsheet;
 
     public Long getSpreadsheetId() {
         return spreadsheetId;
@@ -82,13 +84,13 @@ public class SpreadsheetEntity {
         this.spreadsheetId = spreadsheetId;
     }
 
-    public LocalDateTime getFilingDate() {
+    /*public LocalDateTime getFilingDate() {
         return filingDate;
     }
 
     public void setFilingDate(LocalDateTime filingDate) {
         this.filingDate = filingDate;
-    }
+    }*/
 
     public String getName() {
         return name;
@@ -162,13 +164,13 @@ public class SpreadsheetEntity {
         this.madeBy = madeBy;
     }
 
-    public LocalDateTime getApplicationDate() {
+    /*public LocalDateTime getApplicationDate() {
         return applicationDate;
     }
 
     public void setApplicationDate(LocalDateTime applicationDate) {
         this.applicationDate = applicationDate;
-    }
+    }*/
 
     public String getStatus() {
         return status;
@@ -202,13 +204,13 @@ public class SpreadsheetEntity {
         this.codeLand = codeLand;
     }
 
-    /*public String getCodeNSpreadsheet() {
+    public String getCodeNSpreadsheet() {
         return codeNSpreadsheet;
     }
 
     public void setCodeNSpreadsheet(String codeNSpreadsheet) {
         this.codeNSpreadsheet = codeNSpreadsheet;
-    }*/
+    }
 
     public List<PlantingMapEntity> getPlantingMaps() {
         return plantingMaps;
@@ -217,12 +219,12 @@ public class SpreadsheetEntity {
     public void setPlantingMaps(List<PlantingMapEntity> plantingMaps) {
         this.plantingMaps = plantingMaps;
     }
-
+/*
     public NSpreadsheetEntity getnSpreadsheet() {
         return nSpreadsheet;
     }
 
     public void setnSpreadsheet(NSpreadsheetEntity nSpreadsheet) {
         this.nSpreadsheet = nSpreadsheet;
-    }
+    }*/
 }

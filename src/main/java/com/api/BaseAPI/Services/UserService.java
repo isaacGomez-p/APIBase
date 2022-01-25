@@ -15,4 +15,6 @@ public interface UserService extends AbstractServiceCRUD<UserEntity, Integer>{
     public ApiResponse read();
 
     public ApiResponse delete(Integer id);
+
+    public ApiResponse login(String document, String password);
 }

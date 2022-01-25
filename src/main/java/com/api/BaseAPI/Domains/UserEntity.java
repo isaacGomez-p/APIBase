@@ -22,7 +22,7 @@ public class UserEntity implements Serializable {
     private String lastName;//TODO filter
 
     @Column(name = "DOCUMENT")
-    private Integer document;
+    private String document;
 
     @Column(name = "PASSWORD", length = 120, nullable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -42,6 +42,22 @@ public class UserEntity implements Serializable {
 
     @OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private List<LandEntity> lands;
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", document=" + document +
+                ", password='" + password + '\'' +
+                ", dept='" + dept + '\'' +
+                ", email='" + email + '\'' +
+                ", status=" + status +
+                ", city='" + city + '\'' +
+                ", lands=" + lands +
+                '}';
+    }
 
     public Long getId() {
         return id;
@@ -67,11 +83,11 @@ public class UserEntity implements Serializable {
         this.lastName = lastName;
     }
 
-    public Integer getDocument() {
+    public String getDocument() {
         return document;
     }
 
-    public void setDocument(Integer document) {
+    public void setDocument(String document) {
         this.document = document;
     }
 

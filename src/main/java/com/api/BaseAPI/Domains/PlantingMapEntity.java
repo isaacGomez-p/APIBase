@@ -38,11 +38,11 @@ public class PlantingMapEntity {
     private String code;//código
 
     @ManyToOne
-    @JoinColumn(name="land_id")
+    @JoinColumn(name="LAND_ID")
     private LandEntity land; //Finca
 
-    @ManyToMany(mappedBy = "plantingMaps")
-    private List<SpreadsheetEntity> spreadsheets;
+    //@ManyToMany(mappedBy = "plantingMaps")
+    //private List<SpreadsheetEntity> spreadsheets;
 
     @OneToOne(targetEntity = ProductEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "product_id")
@@ -135,4 +135,12 @@ public class PlantingMapEntity {
     public void setProduct(ProductEntity product) {
         this.product = product;
     }
+
+    /*public List<SpreadsheetEntity> getSpreadsheets() {
+        return spreadsheets;
+    }
+
+    public void setSpreadsheets(List<SpreadsheetEntity> spreadsheets) {
+        this.spreadsheets = spreadsheets;
+    }*/
 }

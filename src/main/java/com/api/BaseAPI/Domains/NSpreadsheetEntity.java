@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 //Número de planilla
-@Entity
+/*@Entity
 @Table(name = "NSpreadsheet")
 public class NSpreadsheetEntity {
 
@@ -69,3 +69,4 @@ public class NSpreadsheetEntity {
         this.spreadsheets = spreadsheets;
     }
 }
+*/
