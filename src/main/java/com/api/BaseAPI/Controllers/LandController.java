@@ -17,8 +17,8 @@ public class LandController {
     @Autowired
     private LandService landService;
 
-    @GetMapping(value = "/getLands/{idUsuario}")
-    public ApiResponse getLands(@PathParam("idUsuario") Long idUsuario){
+    @GetMapping(value = "/getLands")
+    public ApiResponse getLands(@RequestParam Long idUsuario){
         return this.landService.read(idUsuario);
     }
 

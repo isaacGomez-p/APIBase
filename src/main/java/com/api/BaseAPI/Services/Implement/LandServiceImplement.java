@@ -41,10 +41,11 @@ public class LandServiceImplement implements LandService {
     @Override
     public ApiResponse read(Long idUsuario) {
         List<LandEntity> search = this.landRepo.findAll();
+
         List<LandEntity> lands = new ArrayList<>();
-        for(int i= 0; i < search.size(); i ++){
-            if(search.get(i).getUser().getId() == idUsuario){
-                lands.add(search.get(i));
+        for (LandEntity landEntity : search) {
+            if (landEntity.getUser().getId().equals(idUsuario)) {
+                lands.add(landEntity);
             }
         }
         return new ApiResponse(HttpStatus.OK, "Fincas registradas por el usuario", lands);
