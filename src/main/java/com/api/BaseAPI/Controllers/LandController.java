@@ -7,6 +7,8 @@ import com.api.BaseAPI.Services.LandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.PathParam;
+
 @RestController
 @RequestMapping("/land")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
@@ -15,9 +17,9 @@ public class LandController {
     @Autowired
     private LandService landService;
 
-    @GetMapping(value = "/getLands")
-    public ApiResponse getUsers(){
-        return this.landService.read();
+    @GetMapping(value = "/getLands/{idUsuario}")
+    public ApiResponse getLands(@PathParam("idUsuario") Long idUsuario){
+        return this.landService.read(idUsuario);
     }
 
     @PostMapping(value = "/saveLand")

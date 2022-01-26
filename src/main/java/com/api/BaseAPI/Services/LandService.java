@@ -11,7 +11,7 @@ public interface LandService extends AbstractServiceCRUD<LandEntity, Integer>{
 
     public ApiResponse update(LandEntity landDTO);
 
-    public ApiResponse read();
+    public ApiResponse read(Long idUsuario);
 
     public ApiResponse delete(Integer id);
 

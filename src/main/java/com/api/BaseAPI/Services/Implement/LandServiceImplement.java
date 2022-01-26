@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class LandServiceImplement implements LandService {
 
@@ -32,7 +35,19 @@ public class LandServiceImplement implements LandService {
 
     @Override
     public ApiResponse read() {
-        return new ApiResponse(HttpStatus.OK, "Fincas registradas", this.landRepo.findAll());
+        return new ApiResponse(HttpStatus.OK, "Usuario registrado", this.landRepo.findAll());
+    }
+
+    @Override
+    public ApiResponse read(Long idUsuario) {
+        List<LandEntity> search = this.landRepo.findAll();
+        List<LandEntity> lands = new ArrayList<>();
+        for(int i= 0; i < search.size(); i ++){
+            if(search.get(i).getUser().getId() == idUsuario){
+                lands.add(search.get(i));
+            }
+        }
+        return new ApiResponse(HttpStatus.OK, "Fincas registradas por el usuario", lands);
     }
 
     @Override
