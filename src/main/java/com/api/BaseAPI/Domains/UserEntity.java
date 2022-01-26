@@ -43,6 +43,9 @@ public class UserEntity implements Serializable {
     @OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private List<LandEntity> lands;
 
+    @OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    private List<NSpreadsheetEntity> nSpreadsheets;
+
     @Override
     public String toString() {
         return "UserEntity{" +
@@ -129,5 +132,21 @@ public class UserEntity implements Serializable {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public List<LandEntity> getLands() {
+        return lands;
+    }
+
+    public void setLands(List<LandEntity> lands) {
+        this.lands = lands;
+    }
+
+    public List<NSpreadsheetEntity> getnSpreadsheets() {
+        return nSpreadsheets;
+    }
+
+    public void setnSpreadsheets(List<NSpreadsheetEntity> nSpreadsheets) {
+        this.nSpreadsheets = nSpreadsheets;
     }
 }

@@ -31,6 +31,10 @@ public class NSpreadsheetEntity {
     @OneToMany(mappedBy="nSpreadsheet", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private List<SpreadsheetEntity> spreadsheets;
 
+    @ManyToOne
+    @JoinColumn(name="id")
+    private UserEntity user;
+
     public Long getnSpreadsheetId() {
         return nSpreadsheetId;
     }
