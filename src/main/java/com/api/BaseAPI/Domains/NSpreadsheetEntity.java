@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
 
 //Número de planilla
-/*@Entity
+@Entity
 @Table(name = "NSpreadsheet")
 public class NSpreadsheetEntity {
 
@@ -20,8 +21,9 @@ public class NSpreadsheetEntity {
     private String name;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Column(name = "CREATION_DATE", columnDefinition = "TIMESTAMP WITH TIME ZONE")
-    private LocalDateTime creationDate;
+    @Column(name = "CREATION_DATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar creationDate;
 
     @Column(name = "CODE", length = 8, nullable = false)
     private String code;
@@ -45,11 +47,11 @@ public class NSpreadsheetEntity {
         this.name = name;
     }
 
-    public LocalDateTime getCreationDate() {
+    public Calendar getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
+    public void setCreationDate(Calendar creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -69,4 +71,3 @@ public class NSpreadsheetEntity {
         this.spreadsheets = spreadsheets;
     }
 }
-*/

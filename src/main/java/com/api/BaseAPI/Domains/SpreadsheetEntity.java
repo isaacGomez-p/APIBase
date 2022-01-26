@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
 
 //PLanilla de aplicación
@@ -18,8 +19,9 @@ public class SpreadsheetEntity implements Serializable {
     private Long spreadsheetId;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Column(name = "FILING_DATE", columnDefinition = "TIMESTAMP WITH TIME ZONE")
-    private LocalDateTime filingDate; //Fecha de formulación
+    @Column(name = "FILING_DATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar filingDate; //Fecha de formulación
 
     @Column(name = "NAME", length = 120, nullable = false)
     private String name;
@@ -48,9 +50,10 @@ public class SpreadsheetEntity implements Serializable {
     @Column(name = "MADE_BY", length = 120, nullable = false)
     private String madeBy; //Elaborado por
 
-    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    //@Column(name = "APPLICATION_DATE", columnDefinition = "TIMESTAMP WITH TIME ZONE")
-    //private LocalDateTime applicationDate; //Fecha de aplicación
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(name = "APPLICATION_DATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar applicationDate; //Fecha de aplicación
 
     @Column(name = "STATUS", length = 120, nullable = false)
     private String status; //Estado
@@ -72,9 +75,9 @@ public class SpreadsheetEntity implements Serializable {
     @JoinTable(name = "PLANTING_MAPS", joinColumns = @JoinColumn(name = "FK_SPREADSHEET_ID"), inverseJoinColumns = @JoinColumn(name = "FK_PLANTINGMAP_ID"))
     private List<PlantingMapEntity> plantingMaps;
 
-    //@ManyToOne
-    //@JoinColumn(name="NSPREADSHEET_ID")
-    //private NSpreadsheetEntity nSpreadsheet;
+    @ManyToOne
+    @JoinColumn(name="NSPREADSHEET_ID")
+    private NSpreadsheetEntity nSpreadsheet;
 
     public Long getSpreadsheetId() {
         return spreadsheetId;
@@ -212,13 +215,13 @@ public class SpreadsheetEntity implements Serializable {
         this.codeNSpreadsheet = codeNSpreadsheet;
     }
 
-    public List<PlantingMapEntity> getPlantingMaps() {
+   /* public List<PlantingMapEntity> getPlantingMaps() {
         return plantingMaps;
     }
 
     public void setPlantingMaps(List<PlantingMapEntity> plantingMaps) {
         this.plantingMaps = plantingMaps;
-    }
+    }*/
 /*
     public NSpreadsheetEntity getnSpreadsheet() {
         return nSpreadsheet;

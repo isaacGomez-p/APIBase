@@ -41,8 +41,8 @@ public class PlantingMapEntity {
     @JoinColumn(name="LAND_ID")
     private LandEntity land; //Finca
 
-    //@ManyToMany(mappedBy = "plantingMaps")
-    //private List<SpreadsheetEntity> spreadsheets;
+    @ManyToMany(mappedBy = "plantingMaps")
+    private List<SpreadsheetEntity> spreadsheets;
 
     @OneToOne(targetEntity = ProductEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "product_id")
@@ -128,6 +128,14 @@ public class PlantingMapEntity {
         this.land = land;
     }
 
+    public List<SpreadsheetEntity> getSpreadsheets() {
+        return spreadsheets;
+    }
+
+    public void setSpreadsheets(List<SpreadsheetEntity> spreadsheets) {
+        this.spreadsheets = spreadsheets;
+    }
+
     public ProductEntity getProduct() {
         return product;
     }
@@ -135,12 +143,4 @@ public class PlantingMapEntity {
     public void setProduct(ProductEntity product) {
         this.product = product;
     }
-
-    /*public List<SpreadsheetEntity> getSpreadsheets() {
-        return spreadsheets;
-    }
-
-    public void setSpreadsheets(List<SpreadsheetEntity> spreadsheets) {
-        this.spreadsheets = spreadsheets;
-    }*/
 }
