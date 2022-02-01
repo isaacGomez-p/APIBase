@@ -4,26 +4,30 @@ import com.api.BaseAPI.Domains.ApiResponse;
 import com.api.BaseAPI.Domains.UserEntity;
 import com.api.BaseAPI.Repositories.IUserRepo;
 import com.api.BaseAPI.Services.UserService;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UserServiceImplement implements UserService {
+public class UserImplement implements UserService {
 
     @Autowired
     private IUserRepo userRepo;
 
     @Override
     public ApiResponse readById(Integer id) {
-        return null;
+        Optional<UserEntity> optionalUserEntity = userRepo.findById(id);
+        return optionalUserEntity.map(userEntity ->
+                new ApiResponse(HttpStatus.OK, "Usuario encontrado", userEntity)).orElseGet(() ->
+                new ApiResponse(HttpStatus.NOT_FOUND, "No se encontró el usuario", null));
     }
 
     @Override
     public ApiResponse create(UserEntity user) {
-        System.out.println(" user: "+ user.toString());
         this.userRepo.save(user);
         return new ApiResponse(HttpStatus.OK, "Usuario registrado", user);
     }
@@ -44,13 +48,12 @@ public class UserServiceImplement implements UserService {
     }
 
     @Override
-    public ApiResponse login(String document, String password) {
-        List<UserEntity> users = this.userRepo.findAll();
-        for(int i = 0; i < users.size(); i ++){
-            if(users.get(i).getDocument().equals(document) && users.get(i).getPassword().equals(password)){
-                return new ApiResponse(HttpStatus.OK, "Usuarios registrados", users.get(i));
-            }
-        }
-        return new ApiResponse(HttpStatus.NOT_FOUND, "Usuarios registrados", null);
+    public ApiResponse login(UserEntity userEntity) {
+        Optional<UserEntity> optionalUserEntity = userRepo.findByDocumentAndPassword(userEntity.getDocument(), userEntity.getPassword());
+
+        return optionalUserEntity.map(entity ->
+                new ApiResponse(HttpStatus.OK, "Usuario encontrado.", entity)).orElseGet(() ->
+                new ApiResponse(HttpStatus.NOT_FOUND, "No se encontró el usuario", null));
+
     }
 }

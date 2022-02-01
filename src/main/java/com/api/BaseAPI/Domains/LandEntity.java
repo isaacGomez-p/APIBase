@@ -12,7 +12,7 @@ public class LandEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "LAND_ID")
-    private Long land_id;
+    private Long landId;
 
     @Column(name = "NAME", length = 120, nullable = false)
     private String name;
@@ -30,12 +30,12 @@ public class LandEntity {
     @OneToMany(mappedBy="land", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private List<PlantingMapEntity> plantingMaps;
 
-    public Long getLand_id() {
-        return land_id;
+    public Long getLandId() {
+        return landId;
     }
 
-    public void setLand_id(Long land_id) {
-        this.land_id = land_id;
+    public void setLandId(Long landId) {
+        this.landId = landId;
     }
 
     public String getName() {

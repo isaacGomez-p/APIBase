@@ -2,6 +2,7 @@ package com.api.BaseAPI.Services;
 
 import com.api.BaseAPI.Domains.ApiResponse;
 import com.api.BaseAPI.Domains.LandEntity;
+import com.api.BaseAPI.Domains.UserEntity;
 
 public interface LandService extends AbstractServiceCRUD<LandEntity, Integer>{
 
@@ -11,7 +12,7 @@ public interface LandService extends AbstractServiceCRUD<LandEntity, Integer>{
 
     public ApiResponse update(LandEntity landDTO);
 
-    public ApiResponse read(Long idUsuario);
+    public ApiResponse read(Integer userId);
 
     public ApiResponse delete(Integer id);
 

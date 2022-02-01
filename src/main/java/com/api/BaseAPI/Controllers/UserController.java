@@ -15,12 +15,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/getUsers")
+    @GetMapping(value = "/list")
     public ApiResponse getUsers(){
         return this.userService.read();
     }
 
-    @PostMapping(value = "/saveUser")
+    @GetMapping(value = "/getById")
+    public ApiResponse getUserById(@RequestParam Integer userId){
+        return this.userService.readById(userId);
+    }
+
+    @PostMapping(value = "/save")
     public ApiResponse saveUser(@RequestBody UserEntity user){
         return this.userService.create(user);
     }

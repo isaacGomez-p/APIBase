@@ -16,10 +16,10 @@ public class UserEntity implements Serializable {
     private Long id;
 
     @Column(name = "FIRST_NAME", length = 120, nullable = false)
-    private String firstName;//TODO filter
+    private String firstName;
 
     @Column(name = "LAST_NAME", length = 120, nullable = false)
-    private String lastName;//TODO filter
+    private String lastName;
 
     @Column(name = "DOCUMENT")
     private String document;
@@ -45,6 +45,9 @@ public class UserEntity implements Serializable {
 
     @OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private List<NSpreadsheetEntity> nSpreadsheets;
+
+    @OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    private List<ProductEntity> products;
 
     @Override
     public String toString() {

@@ -9,7 +9,8 @@ import java.util.List;
 
 //Número de planilla
 @Entity
-@Table(name = "NSpreadsheet")
+@Table(name = "NSpreadsheet",
+ uniqueConstraints = @UniqueConstraint(columnNames = { "NSPREADSHEET_ID", "USER_ID" }))
 public class NSpreadsheetEntity {
 
     @Id
@@ -32,7 +33,7 @@ public class NSpreadsheetEntity {
     private List<SpreadsheetEntity> spreadsheets;
 
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="USER_ID")
     private UserEntity user;
 
     public Long getnSpreadsheetId() {

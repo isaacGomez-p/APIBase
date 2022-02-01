@@ -14,6 +14,11 @@ public class ApiResponse {
         this.result = result;
     }
 
+    public ApiResponse(HttpStatus status, String message) {
+        this.status = status.value();
+        this.message = message;
+    }
+
     public int getStatus() {
         return status;
     }

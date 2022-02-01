@@ -17,12 +17,12 @@ public class LandController {
     @Autowired
     private LandService landService;
 
-    @GetMapping(value = "/getLands")
-    public ApiResponse getLands(@RequestParam Long idUsuario){
-        return this.landService.read(idUsuario);
+    @GetMapping(value = "/list")
+    public ApiResponse getLands(@RequestParam Integer userId){
+        return this.landService.read(userId);
     }
 
-    @PostMapping(value = "/saveLand")
+    @PostMapping(value = "/save")
     public ApiResponse saveUser(@RequestBody LandEntity land){
         return this.landService.create(land);
     }

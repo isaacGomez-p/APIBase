@@ -3,7 +3,9 @@ package com.api.BaseAPI.Domains;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Product")
+@Table(name = "Product",
+uniqueConstraints = @UniqueConstraint(columnNames = { "NAME", "VARIETY", "USER_ID" }))
+
 public class ProductEntity {
 
     @Id
@@ -22,6 +24,10 @@ public class ProductEntity {
 
     @OneToOne(mappedBy = "product")
     private PlantingMapEntity plantingMap;
+
+    @ManyToOne
+    @JoinColumn(name="USER_ID")
+    private UserEntity user;
 
     public Long getProduct_id() {
         return product_id;

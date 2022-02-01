@@ -15,8 +15,8 @@ public class RestLogin {
     private UserService userService;
 
     @PostMapping(value = "/validation")
-    public ApiResponse saveUser(@RequestBody UserEntity user){
-        return this.userService.login(user.getDocument(), user.getPassword());
+    public ApiResponse login(@RequestBody UserEntity user){
+        return this.userService.login(user);
     }
 
 }
