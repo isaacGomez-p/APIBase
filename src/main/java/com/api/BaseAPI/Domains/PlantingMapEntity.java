@@ -44,8 +44,7 @@ public class PlantingMapEntity {
     @ManyToMany(mappedBy = "plantingMaps")
     private List<SpreadsheetEntity> spreadsheets;
 
-    @OneToOne(targetEntity = ProductEntity.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "product_id")
+    @OneToMany(mappedBy="plantingMap", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
     private ProductEntity product;
 
     public Long getId() {
@@ -136,11 +135,5 @@ public class PlantingMapEntity {
         this.spreadsheets = spreadsheets;
     }
 
-    public ProductEntity getProduct() {
-        return product;
-    }
 
-    public void setProduct(ProductEntity product) {
-        this.product = product;
-    }
 }

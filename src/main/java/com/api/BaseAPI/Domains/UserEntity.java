@@ -1,5 +1,6 @@
 package com.api.BaseAPI.Domains;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -137,6 +138,7 @@ public class UserEntity implements Serializable {
         this.city = city;
     }
 
+    @JsonIgnore
     public List<LandEntity> getLands() {
         return lands;
     }
@@ -151,5 +153,13 @@ public class UserEntity implements Serializable {
 
     public void setnSpreadsheets(List<NSpreadsheetEntity> nSpreadsheets) {
         this.nSpreadsheets = nSpreadsheets;
+    }
+
+    public List<ProductEntity> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductEntity> products) {
+        this.products = products;
     }
 }

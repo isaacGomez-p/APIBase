@@ -1,6 +1,10 @@
 package com.api.BaseAPI.Domains;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Product",
@@ -22,8 +26,9 @@ public class ProductEntity {
     @Column(name = "CODE", length = 8, nullable = false)
     private String code;
 
-    @OneToOne(mappedBy = "product")
-    private PlantingMapEntity plantingMap;
+    @ManyToOne
+    @JoinColumn(name="PLANTINGMAP_ID")
+    private List<PlantingMapEntity> plantingMap;
 
     @ManyToOne
     @JoinColumn(name="USER_ID")
@@ -61,11 +66,22 @@ public class ProductEntity {
         this.code = code;
     }
 
-    public PlantingMapEntity getPlantingMap() {
+    @JsonIgnore
+    @JsonProperty(value = "user")
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    @JsonIgnore
+    public List<PlantingMapEntity> getPlantingMap() {
         return plantingMap;
     }
 
-    public void setPlantingMap(PlantingMapEntity plantingMap) {
+    public void setPlantingMap(List<PlantingMapEntity> plantingMap) {
         this.plantingMap = plantingMap;
     }
 }

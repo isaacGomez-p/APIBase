@@ -18,7 +18,7 @@ public class LandController {
     private LandService landService;
 
     @GetMapping(value = "/list")
-    public ApiResponse getLands(@RequestParam Integer userId){
+    public ApiResponse getLands(@RequestParam Long userId){
         return this.landService.read(userId);
     }
 

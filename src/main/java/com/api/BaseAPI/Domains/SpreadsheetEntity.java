@@ -1,6 +1,7 @@
 package com.api.BaseAPI.Domains;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -87,13 +88,13 @@ public class SpreadsheetEntity implements Serializable {
         this.spreadsheetId = spreadsheetId;
     }
 
-    /*public LocalDateTime getFilingDate() {
+    public Calendar getFilingDate() {
         return filingDate;
     }
 
-    public void setFilingDate(LocalDateTime filingDate) {
+    public void setFilingDate(Calendar filingDate) {
         this.filingDate = filingDate;
-    }*/
+    }
 
     public String getName() {
         return name;
@@ -167,13 +168,13 @@ public class SpreadsheetEntity implements Serializable {
         this.madeBy = madeBy;
     }
 
-    /*public LocalDateTime getApplicationDate() {
+    public Calendar getApplicationDate() {
         return applicationDate;
     }
 
-    public void setApplicationDate(LocalDateTime applicationDate) {
+    public void setApplicationDate(Calendar applicationDate) {
         this.applicationDate = applicationDate;
-    }*/
+    }
 
     public String getStatus() {
         return status;
@@ -215,19 +216,20 @@ public class SpreadsheetEntity implements Serializable {
         this.codeNSpreadsheet = codeNSpreadsheet;
     }
 
-   /* public List<PlantingMapEntity> getPlantingMaps() {
+    public List<PlantingMapEntity> getPlantingMaps() {
         return plantingMaps;
     }
 
     public void setPlantingMaps(List<PlantingMapEntity> plantingMaps) {
         this.plantingMaps = plantingMaps;
-    }*/
-/*
+    }
+
+    @JsonIgnore
     public NSpreadsheetEntity getnSpreadsheet() {
         return nSpreadsheet;
     }
 
     public void setnSpreadsheet(NSpreadsheetEntity nSpreadsheet) {
         this.nSpreadsheet = nSpreadsheet;
-    }*/
+    }
 }

@@ -46,7 +46,7 @@ public class PlantingMapImplement implements PlantingMapService {
 
     @Override
     public ApiResponse read(Integer userId) {
-        Optional<UserEntity> optionalUserEntity = userRepo.findById(userId);
+        Optional<UserEntity> optionalUserEntity = userRepo.findById(userId.longValue());
         if(!optionalUserEntity.isPresent()){
             return new ApiResponse(HttpStatus.NOT_FOUND, "Usuario no encontrado");
         }

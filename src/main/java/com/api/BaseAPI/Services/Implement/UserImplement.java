@@ -20,7 +20,7 @@ public class UserImplement implements UserService {
 
     @Override
     public ApiResponse readById(Integer id) {
-        Optional<UserEntity> optionalUserEntity = userRepo.findById(id);
+        Optional<UserEntity> optionalUserEntity = userRepo.findById(id.longValue());
         return optionalUserEntity.map(userEntity ->
                 new ApiResponse(HttpStatus.OK, "Usuario encontrado", userEntity)).orElseGet(() ->
                 new ApiResponse(HttpStatus.NOT_FOUND, "No se encontró el usuario", null));

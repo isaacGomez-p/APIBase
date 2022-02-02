@@ -45,16 +45,18 @@ public class LandImplement implements LandService {
     }
 
     @Override
-    public ApiResponse read(Integer userId) {
+    public ApiResponse read(Long userId) {
         Optional<UserEntity> optionalUserEntity = userRepo.findById(userId);
         if(!optionalUserEntity.isPresent()){
             return new ApiResponse(HttpStatus.NOT_FOUND, "No se ecnontró el usuario");
         }
         UserEntity userEntity = optionalUserEntity.get();
-        Optional<LandEntity> optional = landRepo.findByUser(userEntity);
-        return optional.map(
-                landEntity -> new ApiResponse(HttpStatus.OK, "Fincas registradas por el usuario", landEntity))
-                .orElseGet(() -> new ApiResponse(HttpStatus.CONFLICT, "Finca no encontrada"));
+        List<LandEntity> optional = landRepo.findByUser(userEntity);
+        if(optional.isEmpty()){
+            return new ApiResponse(HttpStatus.CONFLICT, "Finca no encontrada");
+        }else{
+            return new ApiResponse(HttpStatus.OK, "Fincas registradas por el usuario", optional);
+        }
     }
 
     @Override

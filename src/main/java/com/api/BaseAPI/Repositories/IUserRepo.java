@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface IUserRepo extends JpaRepository<UserEntity, Integer> {
+public interface IUserRepo extends JpaRepository<UserEntity, Long> {
 
     Optional<UserEntity> findByDocumentAndPassword(String username, String password);
 

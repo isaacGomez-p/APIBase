@@ -1,5 +1,7 @@
 package com.api.BaseAPI.Domains;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.catalina.User;
 
 import javax.persistence.*;
@@ -70,6 +72,7 @@ public class LandEntity {
         this.code = code;
     }
 
+    @JsonIgnore
     public List<PlantingMapEntity> getPlantingMaps() {
         return plantingMaps;
     }
@@ -77,6 +80,5 @@ public class LandEntity {
     public void setPlantingMaps(List<PlantingMapEntity> plantingMaps) {
         this.plantingMaps = plantingMaps;
     }
-
 
 }
