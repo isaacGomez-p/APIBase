@@ -44,8 +44,8 @@ public class PlantingMapEntity {
     @ManyToMany(mappedBy = "plantingMaps")
     private List<SpreadsheetEntity> spreadsheets;
 
-    @OneToMany(mappedBy="plantingMap", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
-    private ProductEntity product;
+    /*@OneToMany(mappedBy="plantingMap", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    private ProductEntity product;**/
 
     public Long getId() {
         return id;

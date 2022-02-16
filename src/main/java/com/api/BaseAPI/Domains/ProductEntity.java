@@ -26,9 +26,9 @@ public class ProductEntity {
     @Column(name = "CODE", length = 8, nullable = false)
     private String code;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name="PLANTINGMAP_ID")
-    private List<PlantingMapEntity> plantingMap;
+    private List<PlantingMapEntity> plantingMap;*/
 
     @ManyToOne
     @JoinColumn(name="USER_ID")
@@ -76,12 +76,12 @@ public class ProductEntity {
         this.user = user;
     }
 
-    @JsonIgnore
+    /*@JsonIgnore
     public List<PlantingMapEntity> getPlantingMap() {
         return plantingMap;
     }
 
     public void setPlantingMap(List<PlantingMapEntity> plantingMap) {
         this.plantingMap = plantingMap;
-    }
+    }*/
 }
